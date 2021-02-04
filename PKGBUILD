@@ -1,27 +1,27 @@
 # Maintainer: Tony Lambiris <tony@criticalstack.com>
 
 pkgname=albert-git
-pkgver=v0.16.1.r7.g34c00d7
-pkgrel=2
+pkgver=v0.17.2.r0.gb91ab9ac
+pkgrel=1
 pkgdesc="A sophisticated standalone keyboard launcher."
 arch=('any')
 url="https://github.com/albertlauncher"
 license=('GPL')
 provides=('albert')
-conflicts=('albert')
+conflicts=('albert' 'albert-minimal')
 depends=('qt5-charts' 'qt5-graphicaleffects' 'qt5-quickcontrols' 'qt5-svg' 'qt5-x11extras' 'libx11')
 makedepends=('cmake' 'git' 'muparser' 'python' 'qt5-declarative' 'qt5-svg' 'virtualbox' 'virtualbox-sdk')
 optdepends=('muparser: Calculator plugin'
-            'python: Python extension'
-            'virtualbox: VirtualBox plugin')
+	'python: Python extension'
+	'virtualbox: VirtualBox plugin')
 source=("mirrors/albert::git+https://github.com/albertlauncher/albert.git"
-        "mirrors/plugins::git+https://github.com/albertlauncher/plugins.git"
-        "mirrors/python::git+https://github.com/albertlauncher/python.git"
-        "mirrors/pybind11::git+https://github.com/pybind/pybind11.git")
+	"mirrors/plugins::git+https://github.com/albertlauncher/plugins.git"
+	"mirrors/python::git+https://github.com/albertlauncher/python.git"
+	"mirrors/pybind11::git+https://github.com/pybind/pybind11.git")
 sha256sums=('SKIP'
-            'SKIP'
-            'SKIP'
-            'SKIP')
+	'SKIP'
+	'SKIP'
+	'SKIP')
 
 pkgver() {
 	cd "${srcdir}/albert"
@@ -32,6 +32,7 @@ pkgver() {
 prepare() {
 	cd "${srcdir}/albert"
 
+	git checkout master
 	mkdir -p build
 
 	cd "${srcdir}"/albert
